@@ -1,10 +1,23 @@
 package pl.sztukakodu.jobboard.postings.domain;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class Company {
-    private String name;    // not empty, up to 256 chars
-    private String contact; // email
-    private String website; // url
+    @NotNull
+    @Length(min = 1, max = 256)
+    private String name;
+
+    @NotNull
+    @Email
+    private String contact;
+
+    @NotNull
+    @URL
+    private String website;
 }
