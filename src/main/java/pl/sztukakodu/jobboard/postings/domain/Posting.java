@@ -1,16 +1,17 @@
 package pl.sztukakodu.jobboard.postings.domain;
 
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import lombok.Data;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+@Data
 public class Posting {
-    String id = UUID.randomUUID().toString();
-    Company company;			// not empty
+    private Long id;
+    private Company company;			// not empty
 
-    String description;			// not empty
-    Salary salary;				// not empty
-    List<Seniority> seniority;	// not empty
+    private String description;			// not empty
+    private BigDecimal salary;			// not empty, bigger than 0
 
-    Date expiresAt;				// future date
+    private LocalDate expiresAt;				// future date
 }
