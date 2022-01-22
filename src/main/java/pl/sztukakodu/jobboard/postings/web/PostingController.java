@@ -56,15 +56,4 @@ class PostingController {
     public void delete(@PathVariable Long id) {
         service.deleteById(id);
     }
-
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    ValidationErrorResponse onMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-        ValidationErrorResponse error = new ValidationErrorResponse();
-        for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
-            error.violations().add(new Violation(fieldError.getField(), fieldError.getDefaultMessage()));
-        }
-        return error;
-    }
 }
